@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+  <head>
+
+    <!-- Meta Tag -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- SEO -->
+    <meta name="description" content="150 words">
+    <meta name="author" content="uipasta">
+    <meta name="url" content="http://www.yourdomainname.com">
+    <meta name="copyright" content="company name">
+    <meta name="robots" content="index,follow">
+
+
+    <title>Garbage Managment</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static "clean/images/favicon/favicon.ico" %}">
+    <link rel="apple-touch-icon" sizes="144x144" type="image/x-icon" href="{% static "clean/images/favicon/apple-touch-icon.png" %}">
+
+    <!-- All CSS Plugins -->
+    <link rel="stylesheet" type="text/css" href="{% static "clean/css/plugin.css" %}">
+
+    <!-- Main CSS Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="{% static "clean/css/style.css" %}">
+
+    <!-- Google Web Fonts  -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
+
+    <script type="text/javascript">
+
+    </script>
+
+    <script>
+    window.onload = function () {
+var ne = {{aa}};
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+
+		axisX:{
+		interval: 1
+	},
+	axisY2:{
+		interlacedColor: "rgba(1,77,101,.2)",
+		gridColor: "rgba(1,77,101,.1)",
+		title: "Range of values"
+	},
+	data: [{
+		type: "bar",
+		name: "Sensor values",
+		axisYType: "secondary",
+		color: "#014D65",
+		dataPoints: [
+			{ y: ne[0], label: "CO" },
+			{ y: ne[1], label: "SO2" },
+			{ y: ne[2], label: "CO2" }
+		]
+	}]
+});
+chart.render();
+
+    var chart = new CanvasJS.Chart("chartContainer1", {
+    	theme: "light2", // "light1", "light2", "dark1", "dark2"
+    	exportEnabled: true,
+    	animationEnabled: true,
+    	title: {
+    		text: "Garbage Levels"
+    	},
+    	data: [{
+    		type: "pie",
+    		startAngle: 25,
+    		toolTipContent: "<b>{label}</b>: {y}%",
+    		showInLegend: "true",
+    		legendText: "{label}",
+    		indexLabelFontSize: 16,
+    		indexLabel: "{label} - {y}%",
+    		dataPoints: [
+          { y: ne[0], label: "CO" },
+    			{ y: ne[1], label: "SO2" },
+    			{ y: ne[2], label: "CO2" }
+          ]
+    	}]
+    });
+    chart.render();
+
+    nn = {{bb}}
+    var myLatLng = {lat: nn[0], lng: nn[1] };
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 7,
+      center: myLatLng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+    var marker = new google.maps.Marker({
+         position: myLatLng,
+         map: map,
+       });
+    }
+    </script>
+ </head>
+
+  <body>
+ <div class="home-section-background" data-stellar-background-ratio="0.6">
+
+
+	<!-- Preloader Start -->
+
+    <!-- Preloader End -->
+
+
+
+    <!-- Home & Menu Section Start -->
+    <header id="home" class="home-section">
+
+        <div class="header-top-area">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-sm-3">
+                        <div class="logo">
+                            <a href="#">GMS</a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-9">
+                        <div class="navigation-menu">
+                            <div class="navbar">
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                </div>
+                                <div class="navbar-collapse collapse">
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li class="active"><a class="smoth-scroll" href="{% url 'clean:index' %}">Home <div class="ripple-wrapper"></div></a>
+                                        </li>
+                                        <li><a class="smoth-scroll" href="Location">Location</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div class="display-table">
+            <div class="display-table-cell">
+              <!-- <div class="table1"> -->
+              <tr>
+                <td> <div id="chartContainer1" style="height: 250px; width: 50%;"></div></td>
+                <td> <div id="chartContainer"style="height: 250px; width: 50%;"></div></td>
+              </tr>
+
+            </div>
+           </div>
+
+        </div>
+      </div>
+      <section id="about" class="about-section">
+           <div class="row">
+
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                  <div id="map" style="height: 650px; width: 650px;">
+                  </div>
+                  <div id="info"></div>
+                </div>
+
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                  <div class="about-me section-space-padding">
+
+                    <h3> The sensor location is at {{ bb.0 }} {{bb.1}}</h3>
+                   </div>
+
+                </div>
+
+            </div>
+         </section>
+</header>
+
+    <script type="text/javascript" src="{% static "clean/js/jquery.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "clean/js/plugin.js" %}"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyC0HAKwKinpoFKNGUwRBgkrKhF-sIqFUNA"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+<!-- <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAJ15BbQwlN0XqfqqeNY6uWNkZt0KtbfP4&sensor=false"></script> -->
+    <!-- Main Javascript File  -->
+    <script type="text/javascript" src="{% static "clean/js/scripts.js" %}"></script>
+
+
+  </body>
+ </html>

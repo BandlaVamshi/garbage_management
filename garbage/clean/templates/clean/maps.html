@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>Google Maps Multiple Markers</title>
+{% load staticfiles %}
+<script type="text/javascript" src="{% static "clean/js/jquery.min.js" %}"></script>
+<script type="text/javascript" src="{% static "clean/js/plugin.js" %}"></script>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script type="text/javascript" src="{% static "clean/js/scripts.js" %}"></script>
+
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAJ15BbQwlN0XqfqqeNY6uWNkZt0KtbfP4&sensor=false"></script>
+</head>
+<body background="{% static 'clean/images/bg/bg.jpg' %}">
+  <div class="col-md-6">
+<div id="map" style="height: 650px; width: 750px;">
+</div>
+<div id="info"></div>
+<script type="text/javascript">
+    var ne = {{aa}}
+    var myLatLng = {lat: ne[0], lng: ne[1] };
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 7,
+      center: myLatLng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+    var marker = new google.maps.Marker({
+         position: myLatLng,
+         map: map,
+       });
+</script>
+</div>
+ <div class="col-md-6">
+    <div class="about-me section-space-padding">
+      <h3> The sensor</h3>
+    </div>
+  </div>
+
+</body>
+</html>
